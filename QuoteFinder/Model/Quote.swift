@@ -10,8 +10,8 @@ import Foundation
 struct Quote: Codable {
     
     // MARK: Stored Properties
-    let quoteText: String
-    let quoteAuthor: String
+    let quoteText: String?
+    let quoteAuthor: String?
     let senderName: String
     let senderLink: String
     let quoteLink: String
