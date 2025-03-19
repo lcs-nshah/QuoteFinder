@@ -20,16 +20,18 @@ struct QuoteView: View {
     
     // MARK: Computed properties
     var body: some View {
-        VStack {
+        VStack (alignment: .center) {
             if let currentQuote = viewModel.currentQuote {
-                Group {
-                    Text(currentQuote.quoteText ?? "")
-                        .padding(.bottom, 100)
-                    
-                    Text(currentQuote.quoteAuthor ?? "")
-                }
-                .font(.title)
-                .multilineTextAlignment(.center)
+                
+                Text("\(Image(systemName: "quote.opening")) \(currentQuote.quoteText ?? "") \(Image(systemName: "quote.closing"))")
+                    .font(.system(size: 28))
+                    .multilineTextAlignment(.center)
+                    .padding(.vertical)
+                
+                Text("~ ")
+                    .font(.system(size: 24, weight: .bold))
+                + Text(currentQuote.quoteAuthor ?? "")
+                    .font(.system(size: 24, weight: .bold))
                 
                 Button {
                     withAnimation {
@@ -48,19 +50,23 @@ struct QuoteView: View {
                 } label: {
                     
                     Text("Next Quote")
+                        .font(.system(size: 20, weight: .bold))
+                        .padding(12)
+                        .foregroundStyle(.white)
+                        .background(.indigo)
+                        .clipShape(RoundedRectangle(cornerRadius: 12))
                 }
-                .buttonStyle(.borderedProminent)
+                .padding()
                 .opacity(buttonOpacity)
                 .onReceive(buttonTimer) { _ in
                     withAnimation {
                         buttonOpacity = 1.0
                     }
-                    
-                    // Stop the timer
                     buttonTimer.upstream.connect().cancel()
                 }
             }
         }
+        .padding()
     }
 }
 
