@@ -10,7 +10,7 @@ import SwiftUI
 struct QuoteView: View {
     
     // MARK: Stored properties
-    @State var viewModel = QuoteViewModel(currentQuote: exampleQuote)
+    @State var viewModel = QuoteViewModel()
     
     // MARK: Computed properties
     var body: some View {
